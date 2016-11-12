@@ -2,4 +2,4 @@ deployment:
   prod:
     branch: master
     commands:
-      - ssh ubuntu@35.161.24.79 "cd big-bot && git pull && forever restart index.js"
+      - ssh ubuntu@35.161.24.79 "cd big-bot && git pull && npm install && forever restart index.js"
