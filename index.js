@@ -6,7 +6,7 @@ var witToken = process.env.WIT_TOKEN
 
 
 if(!slackToken)
-    slackToken = "xoxb-103863860821-tkJS2LSdXq27KK1sksyMx4NQ"
+    slackToken = "xoxb-103863860821-pOtIGwyO3fJeWU5nIA5Iykgm"
 if(!witToken)
     witToken = "6YPHITMEAR4CSR3SBXPONGUYD22HVQYY"
 
