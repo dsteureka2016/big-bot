@@ -2,6 +2,9 @@ var Botkit = require('botkit')
 var Witbot = require('witbot')
 var _ = require('underscore')
 
+// setting data 
+var menus = require('./data/menus');
+
 var slackToken = process.env.SLACK_TOKEN
 var witToken = process.env.WIT_TOKEN
 
@@ -52,6 +55,8 @@ controller.hears('.*', 'direct_message,direct_mention', function (bot, message) 
 
       } else if (intent == 'call') {
         bot.reply(message, "I'm not a phone!");
+      } else if (intent == 'lunch') {
+        bot.reply(message, menus.givemefood());
       } else {
         bot.reply(message, "I don't understand!");
       }
