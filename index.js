@@ -38,8 +38,8 @@ controller.hears('.*', 'direct_message,direct_mention', function (bot, message) 
       bot.reply(message, 'Debug: ' + data);
 
       var intent = (outcome.entities.intent == null) ? '' : outcome.entities.intent[0].value;
-      if (intent == 'phone' && outcome.entities.contact != null) {
-        bot.reply(message, 'Ask ' + outcome.entities.contact[0].value + ' himself!');
+      if (intent == 'phone' && outcome.entities.name != null) {
+        bot.reply(message, 'Ask ' + outcome.entities.name[0].value + ' himself!');
       } else if (intent == 'call') {
         bot.reply(message, "I'm not a phone!");
       } else {
