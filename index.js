@@ -10,7 +10,7 @@ var _debug = process.env.DEBUG
 var witbot = Witbot(process.env.WIT_TOKEN)
 var controller = Botkit.slackbot({ debug: false })
 var phonebook = require('./data/phone.json');
-if(!_debug)
+if(_debug)
 {
     console.log("SlackToken:" + slackToken)
     console.log("WitToken:" + witToken)
@@ -43,7 +43,7 @@ controller.hears('.*', 'direct_message,direct_mention', function (bot, message) 
         var lookup = _.findWhere(phonebook,{"name":outcome.entities.name[0].value});
         if(lookup)
         {
-          bot.reply(message, 'Someone told me that '+ outcome.entities.name[0].value + '\'s number is ' + lookup.phone );
+          bot.reply(message, 'Someone told me that '+ outcome.entities.name[0].value + '\'s phone number is ' + lookup.phone );
         }
         else
         {          
