@@ -19,11 +19,6 @@
   "license": "MIT",
   "dependencies": {
     "botkit": "^0.4.1",
-    "witbot": "^2.1.0"
-  },
-  "config":{
-    "SLACK_TOKEN": "xoxb-103863860821-9JxJJ1Es7N825IFs57hhvrwf",
-    "WIT_TOKEN": "6YPHITMEAR4CSR3SBXPONGUYD22HVQYY",
-    "DEBUG": true
+    "node-wit": "^4.1.0"
   }
 }
