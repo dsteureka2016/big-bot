@@ -27,7 +27,6 @@ controller.hears('.*', 'direct_message,direct_mention', function (bot, message) 
 
     wit.any(function (bot, message, outcome) {
       console.log(outcome);
-      console.log('intent: ' + outcome.entities.contact[0].value);
 
       var data = '';
       for (i in outcome.entities) {
@@ -38,8 +37,8 @@ controller.hears('.*', 'direct_message,direct_mention', function (bot, message) 
       console.log(data);
       bot.reply(message, 'Debug: ' + data);
 
-      var intent = outcome.entities.intent == null ? '' : outcome.entities.intent[0].value;
-      if (intent == 'phone') {
+      var intent = (outcome.entities.intent == null) ? '' : outcome.entities.intent[0].value;
+      if (intent == 'phone' && outcome.entities.contact != null) {
         bot.reply(message, 'Ask ' + outcome.entities.contact[0].value + ' himself!');
       } else {
         bot.reply(message, "I don't understand!");
