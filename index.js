@@ -22,32 +22,28 @@ controller.spawn({ token: slackToken }).startRTM(function (err, bot, payload) {
 
 // wire up DMs and direct mentions to wit.ai
 controller.hears('.*', 'direct_message,direct_mention', function (bot, message) {
-    console.log("message:" + message);
-  var wit = witbot.process(message.text, bot, message)
+    console.log("message:" + message.text);
+    var wit = witbot.process(message.text, bot, message);
 
-  wit.hears('hello', 0.53, function (bot, message, outcome) {
-    bot.startConversation(message, function (_, convo) {
-      convo.say('Hello!')
-      convo.ask('How are you?', function (response, convo) {
-        witbot.process(response.text)
-          .hears('good', 0.5, function (outcome) {
-            convo.say('I am so glad to hear it!')
-            convo.next()
-          })
-          .hears('bad', 0.5, function (outcome) {
-            convo.say('I\'m sorry, that is terrible')
-            convo.next()
-          })
-          .otherwise(function (outcome) {
-            convo.say('I\'m cofused')
-            convo.repeat()
-            convo.next()
-          })
-      })
-    })
-  })
+    wit.any(function (bot, message, outcome) {
+      console.log(outcome);
+      console.log('intent: ' + outcome.entities.contact[0].value);
 
-  wit.otherwise(function (bot, message) {
-    bot.reply(message, 'ฉันไม่เข้าใจ นี่มุขหรือเปลือกหอย')
-  })
+      var data = '';
+      for (i in outcome.entities) {
+        for (j in outcome.entities[i]) {
+          data = data + i + '[' + j + '] = ' + outcome.entities[i][j].value + ' (confidence: ' + outcome.entities[i][j].confidence + ')' + '\n';
+        }
+      }
+      console.log(data);
+      bot.reply(message, 'Debug: ' + data);
+
+      var intent = outcome.entities.intent == null ? '' : outcome.entities.intent[0].value;
+      if (intent == 'phone') {
+        bot.reply(message, 'Ask ' + outcome.entities.contact[0].value + ' himself!');
+      } else {
+        bot.reply(message, "I don't understand!");
+      }
+
+     });
 })
