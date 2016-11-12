@@ -19,6 +19,6 @@
   "license": "MIT",
   "dependencies": {
     "botkit": "^0.4.1",
-    "node-wit": "^4.1.0"
+    "witbot": "^2.1.0"
   }
 }
