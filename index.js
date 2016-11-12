@@ -40,6 +40,8 @@ controller.hears('.*', 'direct_message,direct_mention', function (bot, message) 
       var intent = (outcome.entities.intent == null) ? '' : outcome.entities.intent[0].value;
       if (intent == 'phone' && outcome.entities.contact != null) {
         bot.reply(message, 'Ask ' + outcome.entities.contact[0].value + ' himself!');
+      } else if (intent == 'call') {
+        bot.reply(message, "I'm not a phone!");
       } else {
         bot.reply(message, "I don't understand!");
       }
