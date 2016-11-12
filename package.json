@@ -19,6 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "botkit": "^0.4.1",
+    "underscore": "^1.8.3",
     "witbot": "^2.1.0"
   }
 }

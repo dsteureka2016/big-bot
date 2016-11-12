@@ -1,5 +1,6 @@
 var Botkit = require('botkit')
 var Witbot = require('witbot')
+var _ = require('underscore')
 
 var slackToken = process.env.SLACK_TOKEN
 var witToken = process.env.WIT_TOKEN
@@ -8,7 +9,7 @@ var witToken = process.env.WIT_TOKEN
 var _debug = process.env.DEBUG
 var witbot = Witbot(process.env.WIT_TOKEN)
 var controller = Botkit.slackbot({ debug: false })
-
+var phonebook = require('./data/phone.json');
 if(!_debug)
 {
     console.log("SlackToken:" + slackToken)
@@ -39,7 +40,16 @@ controller.hears('.*', 'direct_message,direct_mention', function (bot, message) 
 
       var intent = (outcome.entities.intent == null) ? '' : outcome.entities.intent[0].value;
       if (intent == 'phone' && outcome.entities.name != null) {
-        bot.reply(message, 'Ask ' + outcome.entities.name[0].value + ' himself!');
+        var lookup = _.findWhere(phonebook,{"name":outcome.entities.name[0].value});
+        if(lookup)
+        {
+          bot.reply(message, 'Someone told me that '+ outcome.entities.name[0].value + '\'s number is ' + lookup.phone );
+        }
+        else
+        {          
+          bot.reply(message, 'Ask ' + outcome.entities.name[0].value + ' himself!');
+        }
+
       } else if (intent == 'call') {
         bot.reply(message, "I'm not a phone!");
       } else {
