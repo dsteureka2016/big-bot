@@ -1,8 +1,9 @@
 var Botkit = require('botkit')
-var NodeWit = require('node-wit')
+var Witbot = require('witbot')
 
 var slackToken = process.env.SLACK_TOKEN
 var witToken = process.env.WIT_TOKEN
+
 
 var _debug = process.env.DEBUG
 var witbot = Witbot(process.env.WIT_TOKEN)
@@ -21,7 +22,7 @@ controller.spawn({ token: slackToken }).startRTM(function (err, bot, payload) {
 
 // wire up DMs and direct mentions to wit.ai
 controller.hears('.*', 'direct_message,direct_mention', function (bot, message) {
-    console.log("message:" + message.text);
+    console.log("message:" + message);
   var wit = witbot.process(message.text, bot, message)
 
   wit.hears('hello', 0.53, function (bot, message, outcome) {
