@@ -22,7 +22,7 @@
     "witbot": "^2.1.0"
   },
   "config":{
-    "SLACK_TOKEN": "xoxb-103863860821-dbYfK20Gw9J1viqQYnlUrZ4h",
+    "SLACK_TOKEN": "xoxb-103863860821-9JxJJ1Es7N825IFs57hhvrwf",
     "WIT_TOKEN": "6YPHITMEAR4CSR3SBXPONGUYD22HVQYY",
     "DEBUG": true
   }

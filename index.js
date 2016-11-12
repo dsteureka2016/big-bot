@@ -3,6 +3,13 @@ var Witbot = require('witbot')
 
 var slackToken = process.env.SLACK_TOKEN
 var witToken = process.env.WIT_TOKEN
+
+
+if(!slackToken)
+    slackToken = "xoxb-103863860821-9JxJJ1Es7N825IFs57hhvrwf"
+if(!witToken)
+    witToken = "6YPHITMEAR4CSR3SBXPONGUYD22HVQYY"
+
 var _debug = process.env.DEBUG
 var witbot = Witbot(process.env.WIT_TOKEN)
 var controller = Botkit.slackbot({ debug: false })
