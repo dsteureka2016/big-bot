@@ -1,0 +1,29 @@
+{
+  "name": "big-bot",
+  "version": "1.0.0",
+  "description": "Big BOT is a chat based program. He is so กวนตีน and hilarious yet intelligent. Get start and chat with him!",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/dsteureka2016/big-bot"
+  },
+  "keywords": [
+    "bot",
+    "chatbot"
+  ],
+  "author": "BPS Eureka 2016",
+  "license": "MIT",
+  "dependencies": {
+    "botkit": "^0.4.1",
+    "witbot": "^2.1.0"
+  },
+  "config":{
+    "SLACK_TOKEN": "xoxb-103863860821-dbYfK20Gw9J1viqQYnlUrZ4h",
+    "WIT_TOKEN": "6YPHITMEAR4CSR3SBXPONGUYD22HVQYY",
+    "DEBUG": true
+  }
+}
