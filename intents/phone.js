@@ -11,14 +11,12 @@ exports.respond = function(bot, message, db, entities) {
     } else if (docs.length == 1) {
       bot.reply(message, 'Someone told me that ' + docs[0].nickname + '\'s phone number is ' + docs[0].phone);
     } else if (docs.length > 0) {
-      for (var i = 0; i < docs.length; i++) {
-        var response;
-        response = "I've found " + docs.length + " people matching your query:";
-        docs.forEach(function(doc) {
-          response += "\n " + doc.nickname + " (" + doc.firstname + ")'s phone number is " + doc.phone;
-        })
-        bot.reply(message, response);
-      }
+      var response;
+      response = "I've found " + docs.length + " people matching your query:";
+      docs.forEach(function(doc) {
+        response += "\n " + doc.nickname + " (" + doc.firstname + ")'s phone number is " + doc.phone;
+      })
+      bot.reply(message, response);
     } else {
       bot.reply(message, "I'm sorry I don't know.");
     }
