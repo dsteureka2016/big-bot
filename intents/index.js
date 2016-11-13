@@ -5,6 +5,7 @@ temp.push(require('./call.js'));
 temp.push(require('./lunch.js'));
 temp.push(require('./passwordHint.js'));
 temp.push(require('./swear.js'));
+temp.push(require('./add_menu.js'));
 temp.push(require('./remind.js'));
 temp.push(require('./whoami.js'));
 
