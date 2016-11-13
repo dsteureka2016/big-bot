@@ -46,7 +46,10 @@ controller.hears('.*', 'direct_message,direct_mention,mention', function (bot, m
       }
     }
     console.log(data);
-    bot.reply(message, 'Debug: ' + data);
+    
+    if (_debug) {
+      bot.reply(message, 'Debug: ' + data);
+    }
 
     try {
       var intent = (outcome.entities.intent == null) ? '' : outcome.entities.intent[0].value;
