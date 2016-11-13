@@ -5,7 +5,8 @@ var _ = require('underscore')
 var phone = require('./intents/phone.js')
 var call = require('./intents/call.js')
 var lunch = require('./intents/lunch.js')
-
+var passwordHint = require('./intents/passwordHint.js')
+var msgUtil = require('./message')
 
 // setting data 
 var menus = require('./data/menus');
@@ -63,8 +64,10 @@ controller.hears('.*', 'direct_message,direct_mention,mention', function (bot, m
         lunch.respond(bot, message, db, outcome.entities);
       } else if (intent == 'greetings') {
         bot.reply(message, "Hi there! I'm bot.");
+      } else if (intent == 'password_hint') {
+        passwordHint.respond(bot, message, db, outcome.entities);
       } else {
-        bot.reply(message, "I don't understand!");
+        bot.reply(message, msgUtil.idontunderstand());
       }
 
      });
