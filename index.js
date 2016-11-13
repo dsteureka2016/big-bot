@@ -4,6 +4,8 @@ var MongoClient = require('mongodb').MongoClient
 var _ = require('underscore')
 var msgUtil = require('./message')
 var intents  = require('./intents')
+var msgUtil  = require('./message.js')
+
 
 var slackToken = process.env.SLACK_TOKEN
 var witToken = process.env.WIT_TOKEN
@@ -48,13 +50,20 @@ controller.hears('.*', 'direct_message,direct_mention,mention', function (bot, m
       console.log(data);
       bot.reply(message, 'Debug: ' + data);
 
-      var intent = (outcome.entities.intent == null) ? '' : outcome.entities.intent[0].value;
-      if (intent && intents.intents[intent]) {
-        intents.intents[intent].respond(bot, message, db, outcome.entities);
-      } else if (intent == 'greetings') {
-        bot.reply(message, "Hi there! I'm bot.");
-      } else {
-        bot.reply(message, msgUtil.idontunderstand());
+      try
+      {
+        var intent = (outcome.entities.intent == null) ? '' : outcome.entities.intent[0].value;
+            if (intent && intents.intents[intent]) {
+              intents.intents[intent].respond(bot, message, db, outcome.entities);
+            } else if (intent == 'greetings') {
+              bot.reply(message, "Hi there! I'm bot.");
+            } else {
+              bot.reply(message, msgUtil.idontunderstand());
+            }
+      }
+      catch(e)
+      {
+        bot.reply(message, "Error " + e);
       }
 
      });
