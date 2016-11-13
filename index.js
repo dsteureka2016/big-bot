@@ -50,6 +50,8 @@ controller.hears('.*', 'direct_message,direct_mention,mention', function (bot, m
       var intent = (outcome.entities.intent == null) ? '' : outcome.entities.intent[0].value;
       if ( intent && intents.intents[intent] ) {
         intents.intents[intent].respond(bot,message, db, outcome.entities);
+      } else if (intent == 'greeting') {
+        bot.reply(message, "Hi there! I'm bot.");
       } else {
         bot.reply(message, "I don't understand!");
       }
