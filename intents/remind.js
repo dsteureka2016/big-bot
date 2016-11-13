@@ -6,5 +6,5 @@ exports.respond = function(bot, message, db, entities) {
   var dueDate = entities.duedate[0].value;
   console.log('Searching for ' + memberName);
 
- 
+  bot.reply(message, memberName + " will do " + className +"by "+ dueDate);    
 }
