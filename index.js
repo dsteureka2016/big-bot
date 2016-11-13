@@ -8,9 +8,6 @@ var lunch = require('./intents/lunch.js')
 var passwordHint = require('./intents/passwordHint.js')
 var msgUtil = require('./message')
 
-// setting data 
-var menus = require('./data/menus');
-
 var slackToken = process.env.SLACK_TOKEN
 var witToken = process.env.WIT_TOKEN
 var mongoUrl = process.env.MONGO_URL
