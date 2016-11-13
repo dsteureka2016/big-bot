@@ -8,6 +8,7 @@ temp.push(require('./swear.js'));
 temp.push(require('./add_menu.js'));
 temp.push(require('./remind.js'));
 temp.push(require('./whoami.js'));
+temp.push(require('./setuser.js'));
 
 for(var i=0; i<temp.length; i++)
 {
