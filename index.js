@@ -34,7 +34,7 @@ MongoClient.connect(mongoUrl, function(err, dbConn) {
 
 // wire up DMs and direct mentions to wit.ai
 controller.hears('.*', 'direct_message,direct_mention,mention', function (bot, message) {
-    console.log("message:" + message.text);
+    console.log("message:" + JSON.stringify(message));
     var wit = witbot.process(message.text, bot, message);
 
     wit.any(function (bot, message, outcome) {
