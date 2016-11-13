@@ -2,7 +2,13 @@ var Botkit = require('botkit')
 var Witbot = require('witbot')
 var MongoClient = require('mongodb').MongoClient
 var _ = require('underscore')
-var intents = require('./intents')
+var phone = require('./intents/phone.js')
+var call = require('./intents/call.js')
+var lunch = require('./intents/lunch.js')
+
+
+// setting data 
+var menus = require('./data/menus');
 
 var slackToken = process.env.SLACK_TOKEN
 var witToken = process.env.WIT_TOKEN
@@ -48,9 +54,14 @@ controller.hears('.*', 'direct_message,direct_mention,mention', function (bot, m
       bot.reply(message, 'Debug: ' + data);
 
       var intent = (outcome.entities.intent == null) ? '' : outcome.entities.intent[0].value;
-      if ( intent && intents.intents[intent] ) {
-        intents.intents[intent].respond(bot,message, db, outcome.entities);
-      } else if (intent == 'greeting') {
+      if (intent == 'phone' && outcome.entities.name != null) {
+        phone.respond(bot, message, db, outcome.entities);
+      } else if (intent == 'call') {
+        call.respond(bot, message, db, outcome.entities);
+        bot.reply(message, "I'm not a phone!");
+      } else if (intent == 'lunch') {
+        lunch.respond(bot, message, db, outcome.entities);
+      } else if (intent == 'greetings') {
         bot.reply(message, "Hi there! I'm bot.");
       } else {
         bot.reply(message, "I don't understand!");
