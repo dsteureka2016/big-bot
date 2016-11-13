@@ -20,6 +20,7 @@
   "dependencies": {
     "botkit": "^0.4.1",
     "mongodb": "^2.2.11",
+    "node-fetch": "^1.6.3",
     "underscore": "^1.8.3",
     "witbot": "^2.1.0"
   }

@@ -2,13 +2,9 @@ var Botkit = require('botkit')
 var Witbot = require('witbot')
 var MongoClient = require('mongodb').MongoClient
 var _ = require('underscore')
-var phone = require('./intents/phone.js')
-var call = require('./intents/call.js')
-var lunch = require('./intents/lunch.js')
+var intents  = require('./intents')
+var msgUtil  = require('./message.js')
 
-
-// setting data 
-var menus = require('./data/menus');
 
 var slackToken = process.env.SLACK_TOKEN
 var witToken = process.env.WIT_TOKEN
@@ -38,7 +34,7 @@ MongoClient.connect(mongoUrl, function(err, dbConn) {
 
 // wire up DMs and direct mentions to wit.ai
 controller.hears('.*', 'direct_message,direct_mention,mention', function (bot, message) {
-    console.log("message:" + message.text);
+    console.log("message:" + JSON.stringify(message));
     var wit = witbot.process(message.text, bot, message);
 
     wit.any(function (bot, message, outcome) {
@@ -53,18 +49,19 @@ controller.hears('.*', 'direct_message,direct_mention,mention', function (bot, m
       console.log(data);
       bot.reply(message, 'Debug: ' + data);
 
-      var intent = (outcome.entities.intent == null) ? '' : outcome.entities.intent[0].value;
-      if (intent == 'phone' && outcome.entities.name != null) {
-        phone.respond(bot, message, db, outcome.entities);
-      } else if (intent == 'call') {
-        call.respond(bot, message, db, outcome.entities);
-        bot.reply(message, "I'm not a phone!");
-      } else if (intent == 'lunch') {
-        lunch.respond(bot, message, db, outcome.entities);
-      } else if (intent == 'greetings') {
-        bot.reply(message, "Hello <@" + message.user + "|user>\nHow are you?");
-      } else {
-        bot.reply(message, "I don't understand!");
+try
+      {
+        var intent = (outcome.entities.intent == null) ? '' : outcome.entities.intent[0].value;
+            if (intent && intents.intents[intent]) {
+              intents.intents[intent].respond(bot, message, db, outcome.entities);
+            } else if (intent == 'greetings') {
+              bot.reply(message, "Hi there! I'm bot.");
+            } else {
+              bot.reply(message, msgUtil.idontunderstand());
+            }      }
+      catch(e)
+      {
+        bot.reply(message, "Error " + e);
       }
 
      });

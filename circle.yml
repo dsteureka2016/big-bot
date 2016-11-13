@@ -2,4 +2,4 @@ deployment:
   prod:
     branch: master
     commands:
-      - ssh ubuntu@$SERVER "cd big-bot && git pull && npm install && forever stop index.js && ./start.sh"
+      - ssh ubuntu@$SERVER "cd big-bot && git pull && npm install && forever stop index.js; ./start.sh"
