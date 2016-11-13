@@ -1,3 +1,4 @@
+exports.intent_name = 'phone'
 exports.respond = function(bot, message, db, entities) {
         var searchName = entities.name[0].value;
         console.log('Searching for ' + searchName);
