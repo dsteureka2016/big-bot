@@ -1,3 +1,5 @@
+exports.intent_name = 'lunch'
+
 var prefixs = ["How about ","Have you try "];
 
 exports.respond = function(bot, message, db, entities) {
