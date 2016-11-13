@@ -53,12 +53,14 @@ controller.hears('.*', 'direct_message,direct_mention', function (bot, message) 
       if (intent == 'phone' && outcome.entities.name != null) {
         var searchName = outcome.entities.name[0].value;
         console.log('Searching for ' + searchName);
-        db.collection('phone').find({nickname: searchName}).toArray(function(err, docs) {
+        db.collection('phone').find({$or: [{nickname: searchName}, {firstname: searchName}, {lastname: searchName}]}).toArray(function(err, docs) {
           if (err) {
             console.log(err);
             bot.reply(message, 'My brain has dry ice.')
           } else if (docs.length > 0) {
-            bot.reply(message, 'Someone told me that '+ docs[0].nickname + '\'s phone number is ' + docs[0].phone );
+            for (var i = 0; i < docs.length; i++) {
+              bot.reply(message, 'Someone told me that '+ docs[i].nickname + '\'s phone number is ' + docs[i].phone );
+            }
           } else {
             bot.reply(message, 'Ask ' + searchName + ' himself!');
           }
