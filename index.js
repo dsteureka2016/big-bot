@@ -62,7 +62,7 @@ controller.hears('.*', 'direct_message,direct_mention,mention', function (bot, m
       } else if (intent == 'lunch') {
         lunch.respond(bot, message, db, outcome.entities);
       } else if (intent == 'greetings') {
-        bot.reply(message, "Hi there! I'm bot.");
+        bot.reply(message, "Hello <@" + message.user + "|user>\nHow are you?");
       } else {
         bot.reply(message, "I don't understand!");
       }
