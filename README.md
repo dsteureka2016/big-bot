@@ -18,7 +18,7 @@ Set WIT_TOKEN and SLACK_TOKEN
 set WIT_TOKEN=[wit token]
 set SLACK_TOKEN=[slack token]
 ```
-Note: Do not commit SLACK_TOKEN to public repository
+> Note: Do not commit SLACK_TOKEN to public repository
 
 Run the program using command
 ```bash
