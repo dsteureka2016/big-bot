@@ -3,6 +3,8 @@ var Witbot = require('witbot')
 var MongoClient = require('mongodb').MongoClient
 var _ = require('underscore')
 var intents  = require('./intents')
+var msgUtil  = require('./message.js')
+
 
 var slackToken = process.env.SLACK_TOKEN
 var witToken = process.env.WIT_TOKEN
