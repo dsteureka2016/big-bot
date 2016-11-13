@@ -4,6 +4,7 @@ temp.push(require('./phone.js'));
 temp.push(require('./call.js'));
 temp.push(require('./lunch.js'));
 temp.push(require('./passwordHint.js'));
+temp.push(require('./swear.js'));
 
 for(var i=0; i<temp.length; i++)
 {
