@@ -69,7 +69,7 @@ MongoClient.connect(mongoUrl, function(err, db) {
 
 function retrieveDbNames(db) {
   return new Promise(function(resolve, reject) {
-    db.collection('phone').find({}).toArray(function(err, docs) {
+    db.collection('people').find({}).toArray(function(err, docs) {
       if (err) {
         reject(err);
         return;
