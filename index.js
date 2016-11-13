@@ -61,7 +61,7 @@ controller.hears('.*', 'direct_message,direct_mention,mention', function (bot, m
         bot.reply(message, "I'm not a phone!");
       } else if (intent == 'lunch') {
         lunch.respond(bot, message, db, outcome.entities);
-      } else if (intent == 'greeting') {
+      } else if (intent == 'greetings') {
         bot.reply(message, "Hi there! I'm bot.");
       } else {
         bot.reply(message, "I don't understand!");
