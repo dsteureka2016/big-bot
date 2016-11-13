@@ -2,7 +2,6 @@ var Botkit = require('botkit')
 var Witbot = require('witbot')
 var MongoClient = require('mongodb').MongoClient
 var _ = require('underscore')
-var msgUtil = require('./message')
 var intents  = require('./intents')
 var msgUtil  = require('./message.js')
 
