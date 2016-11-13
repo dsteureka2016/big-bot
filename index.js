@@ -85,3 +85,25 @@ controller.hears('.*', 'direct_message,direct_mention,mention', function (bot, m
 
   });
 })
+
+controller.on('interactive_message_callback', function(bot, message) {
+
+    // check message.actions and message.callback_id to see what action to take...
+    if(message.callback_id===123)
+    {
+      if(message.actions=="AWD10SP7")
+      {
+        bot.replyInteractive(message, "AWD 10SP7 console password is dstsetup:passw0rd" );
+      }
+      else if(message.actions=="old")
+      {
+        bot.replyInteractive(message, "The older version of awd console password is dstsetup:dstsetup" );
+      }
+      else
+      {
+        bot.replyInteractive(message, "Sorry, I don't get what you are talking about" );
+      }
+      
+    }
+
+});

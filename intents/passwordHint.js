@@ -18,20 +18,22 @@ exports.respond = function(bot, message, db, entities) {
                                     "name":"AWD10 SP7+",
                                     "text": "AWD10 SP6 or above",
                                     "color": "#00A300",
-                                    "value": "AWD10SP6",
+                                    "value": "AWD10SP7",
                                     "type": "button",
                                 },
                                 {
                                     "name":"I use older version",
                                     "text": "AWD10SP5 or below",
                                     "color": "#000000",
-                                    "value": "AWD10SP5",
+                                    "value": "old",
                                     "type": "button",
                                 }
                             ]
                         }
                     ]
                 });
+
+                bot.replyInteractive
             }
             else
             {
