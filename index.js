@@ -68,9 +68,9 @@ controller.hears('.*', 'direct_message,direct_mention,mention', function (bot, m
           }
         }
         if (message.user) {
-          bot.reply(message, greetingPhrase + " user.");  
-        } else {
           bot.reply(message, greetingPhrase + " <@" + message.user + ">.");
+        } else {
+          bot.reply(message, greetingPhrase + " user.");  
         }
       } else {
         bot.reply(message, msgUtil.idontunderstand());
