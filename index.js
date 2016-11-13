@@ -55,7 +55,7 @@ try
             if (intent && intents.intents[intent]) {
               intents.intents[intent].respond(bot, message, db, outcome.entities);
             } else if (intent == 'greetings') {
-              bot.reply(message, "Hi there! I'm bot.");
+              bot.reply(message, "Hello <@" + message.user + "|user>.");
             } else {
               bot.reply(message, msgUtil.idontunderstand());
             }      }
