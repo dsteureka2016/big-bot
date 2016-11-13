@@ -5,6 +5,7 @@ var _ = require('underscore')
 var phone = require('./intents/phone.js')
 var call = require('./intents/call.js')
 var lunch = require('./intents/lunch.js')
+var msgUtil = require('./message')
 
 
 // setting data 
@@ -64,7 +65,7 @@ controller.hears('.*', 'direct_message,direct_mention,mention', function (bot, m
       } else if (intent == 'greetings') {
         bot.reply(message, "Hi there! I'm bot.");
       } else {
-        bot.reply(message, "I don't understand!");
+        bot.reply(message, msgUtil.idontunderstand());
       }
 
      });
