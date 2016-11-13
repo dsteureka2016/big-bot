@@ -53,7 +53,21 @@ controller.hears('.*', 'direct_message,direct_mention,mention', function (bot, m
       if (intent && intents.intents[intent]) {
         intents.intents[intent].respond(bot, message, db, outcome.entities);
       } else if (intent == 'greetings') {
-        bot.reply(message, "Hello <@" + message.user + "|user>.");
+        var greetingPhrase = "Hello";
+        if (message.ts) {
+          var date = new Date(message.ts * 1000);
+          var time = date.getHours();
+          if (time >= 0 && time <= 12) {
+            greetingPhrase = "Good morning";
+          } else if (time >= 12 && time <= 16) {
+            greetingPhrase = "Good afternoon";
+          } else if (time >= 16 && time <= 21) {
+            greetingPhrase = "Good evening";
+          } else if (time >= 21 && time <= 24) {
+            greetingPhrase = "Good night";
+          }
+        }
+        bot.reply(message, greetingPhrase + " <@" + message.user + "|user>.");
       } else {
         bot.reply(message, msgUtil.idontunderstand());
       }
