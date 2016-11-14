@@ -1,6 +1,6 @@
 exports.intent_name = 'lunch'
 
-var prefixs = ["How about ","Have you try "];
+var prefixs = ["How about ","Have you tried "];
 
 exports.respond = function(bot, message, db, entities) {
 			db.collection('menus').find({}).toArray(function(err, docs) {
